@@ -1,0 +1,96 @@
+Customized st - simple terminal
+===============================
+
+https://github.com/johan-bolmsjo/st
+
+
+Patches
+=======
+
+Xresources Configuration
+------------------------
+
+Resources are searched in the `st` and `*` name spaces. The
+configuration can be reloaded by sending SIGUSR1 to st. Update the X
+resources database with `xrdb`, e.g. `xrdb -merge ~/.Xresources`, prior
+to doing so.
+
+Colors:
+
+Color values are either symbolic names such as "black" or RGB values in
+the format #rrggbb.
+
+Color resource names:
+
+- Colors 0 to 255 of the format "colorN", e.g. "color22".
+- Foreground color "foreground".
+- Background color "background".
+- Cursor color "cursorColor".
+- Reverse cursor color "reverse-cursor".
+
+Font:
+
+- Font name and rendering hints "font".
+- Width and height kerning / character bounding-box multipliers
+  "cwscale" and "chscale" (default 1.0).
+
+Miscellaneous:
+
+- Terminal name "termname" (default "st-256color").
+- Border pixels "borderpx" (default 2).
+- Bell volume "bellvolume" (default 0, range -100 to 100).
+- Cursor blink timeout "blinktimeout" (default 800, 0 disables blinking).
+- Cursor shape "cursorshape" (default 2):
+  2: Block ("█")
+  4: Underline ("_")
+  6: Bar ("|")
+  7: Snowman ("☃")
+
+Fullscreen Mode
+---------------
+
+Full screen mode can be toggled with the F11 key.
+
+Default Theme: Solarized Light
+------------------------------
+
+The built-in color scheme is set to solarized light. This can be
+overridden using Xresource configuration.
+
+You may want to also use a solarized dircolors theme, such as
+https://github.com/seebi/dircolors-solarized.
+
+
+Tips and Tricks
+===============
+
+* Prevent crashes due to missing font glyphs.
+
+  Install the font "unifont" which contain glyphs for each visible
+  Unicode Plane 0 character.
+  
+  Example: `apt install unifont`
+
+
+* Increase or decrease font size in running terminal.
+
+  Increase with Ctrl+Shift+PageUp and decrease with Ctrl+Shift+PageDown
+
+
+* Bitmap font rendering
+
+  Bitmap TTF fonts can be rendered pixel perfect by disabling
+  anti-aliasing and specifying an exact pixel size.
+  
+  Example: "Tamzen, Medium:pixelsize=20:antialias=false"
+
+
+* Specify font with command line argument
+
+  Create a wrapper script that specifies the font as a command line
+  argument to the terminal emulator.
+
+  Example:
+  
+    #!/usr/bin/env bash
+    exec st -f "Go Mono:style=Regular:size=9:antialias=true:autohint=true" "$@"
